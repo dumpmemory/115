@@ -32,7 +32,7 @@ jobs:
           name: install dependency
           command: |
             sudo apt-get update
-            sudo apt-get install -y python python-pip vim-common
+            sudo apt-get install -y python python-pip vim-common nasm
             git clone https://github.com/pawliczka/CRX3-Creator.git /tmp/CRX3-Creator
             sudo pip2 install -r /tmp/CRX3-Creator/requirements.txt
 
