@@ -12,7 +12,10 @@ jobs:
       - restore_cache:
           keys:
             - node-chache-{{ .Branch }}-{{ checksum "yarn.lock" }}-{{ checksum "package.json" }}
-      - run: yarn install
+      - run: |
+          sudo apt-get update
+          sudo apt-get install -y python python-pip vim-common nasm
+          yarn install
       - save_cache:
           key: node-chache-{{ .Branch }}-{{ checksum "yarn.lock" }}-{{ checksum "package.json" }}
           paths:
@@ -31,8 +34,6 @@ jobs:
       - run:
           name: install dependency
           command: |
-            sudo apt-get update
-            sudo apt-get install -y python python-pip vim-common nasm
             git clone https://github.com/pawliczka/CRX3-Creator.git /tmp/CRX3-Creator
             sudo pip2 install -r /tmp/CRX3-Creator/requirements.txt
 
